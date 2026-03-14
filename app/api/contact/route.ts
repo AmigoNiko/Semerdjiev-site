@@ -161,7 +161,7 @@ export async function POST(request: Request) {
       from: FROM_EMAIL,
       to: [TO_EMAIL],
       replyTo: email,
-      subject: `Ново запитване от ${name} — Портфолио — ${subjectDate}`,
+      subject: `Ново запитване от ${name} — ${subjectDate}`,
       html: buildEmailHtml(payload),
       attachments: attachments.length > 0 ? attachments : undefined,
     });
