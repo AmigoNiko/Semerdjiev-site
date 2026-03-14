@@ -81,11 +81,46 @@ function escapeHtml(text: string): string {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as ContactPayload;
+    const contentType = request.headers.get("content-type") ?? "";
+    let name: string;
+    let email: string;
+    let message: string;
+    let phone: string | undefined;
+    let address: string | undefined;
+    let roomType: string | undefined;
+    let photoNames: string[] = [];
+    let attachments: { filename: string; content: Buffer }[] = [];
 
-    const name = typeof body?.name === "string" ? body.name.trim() : "";
-    const email = typeof body?.email === "string" ? body.email.trim() : "";
-    const message = typeof body?.message === "string" ? body.message.trim() : "";
+    if (contentType.includes("multipart/form-data")) {
+      const formData = await request.formData();
+      name = (formData.get("name") as string | null)?.trim() ?? "";
+      email = (formData.get("email") as string | null)?.trim() ?? "";
+      message = (formData.get("message") as string | null)?.trim() ?? "";
+      const phoneVal = formData.get("phone") as string | null;
+      phone = phoneVal?.trim() || undefined;
+      const addressVal = formData.get("address") as string | null;
+      address = addressVal?.trim() || undefined;
+      const roomVal = formData.get("roomType") as string | null;
+      roomType = roomVal?.trim() || undefined;
+      const files = formData.getAll("photos") as Blob[];
+      for (const file of files) {
+        if (!file || typeof file.size !== "number") continue;
+        const buffer = Buffer.from(await (file as Blob).arrayBuffer());
+        const filename =
+          file instanceof File ? file.name : `attachment-${Date.now()}-${attachments.length}`;
+        photoNames.push(filename);
+        attachments.push({ filename, content: buffer });
+      }
+    } else {
+      const body = (await request.json()) as ContactPayload;
+      name = typeof body?.name === "string" ? body.name.trim() : "";
+      email = typeof body?.email === "string" ? body.email.trim() : "";
+      message = typeof body?.message === "string" ? body.message.trim() : "";
+      phone = typeof body?.phone === "string" ? body.phone.trim() || undefined : undefined;
+      address = typeof body?.address === "string" ? body.address.trim() || undefined : undefined;
+      roomType = typeof body?.roomType === "string" ? body.roomType.trim() || undefined : undefined;
+      photoNames = Array.isArray(body?.photoNames) ? body.photoNames : [];
+    }
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -108,19 +143,27 @@ export async function POST(request: Request) {
     const payload: ContactPayload = {
       name,
       email,
-      phone: typeof body?.phone === "string" ? body.phone.trim() || undefined : undefined,
-      address: typeof body?.address === "string" ? body.address.trim() || undefined : undefined,
-      roomType: typeof body?.roomType === "string" ? body.roomType.trim() || undefined : undefined,
+      phone,
+      address,
+      roomType,
       message,
-      photoNames: Array.isArray(body?.photoNames) ? body.photoNames : undefined,
+      photoNames: photoNames.length > 0 ? photoNames : undefined,
     };
 
+    const subjectDate = new Date().toLocaleString("bg-BG", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
     const { error } = await resend.emails.send({
       from: FROM_EMAIL,
       to: [TO_EMAIL],
       replyTo: email,
-      subject: `Ново запитване от ${name} — Портфолио`,
+      subject: `Ново запитване от ${name} — Портфолио — ${subjectDate}`,
       html: buildEmailHtml(payload),
+      attachments: attachments.length > 0 ? attachments : undefined,
     });
 
     if (error) {

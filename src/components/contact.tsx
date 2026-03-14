@@ -54,6 +54,9 @@ const roomTypes = [
   "Друго",
 ];
 
+const MAX_FILE_SIZE_MB = 10;
+const MAX_FILE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
 export function Contact() {
   const [selectedRoom, setSelectedRoom] = useState<string>("");
   const [photos, setPhotos] = useState<{ name: string; size: string }[]>([]);
@@ -61,19 +64,28 @@ export function Contact() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const photosFilesRef = useRef<File[]>([]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
-    const newPhotos = Array.from(files).map((file) => ({
-      name: file.name,
-      size: (file.size / 1024 / 1024).toFixed(2) + " MB",
-    }));
+    const validFiles: File[] = [];
+    const newPhotos: { name: string; size: string }[] = [];
+    for (const file of Array.from(files)) {
+      if (file.size > MAX_FILE_BYTES) continue;
+      validFiles.push(file);
+      newPhotos.push({
+        name: file.name,
+        size: (file.size / 1024 / 1024).toFixed(2) + " MB",
+      });
+    }
+    photosFilesRef.current = [...photosFilesRef.current, ...validFiles];
     setPhotos((prev) => [...prev, ...newPhotos]);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const removePhoto = (index: number) => {
+    photosFilesRef.current = photosFilesRef.current.filter((_, i) => i !== index);
     setPhotos((prev) => prev.filter((_, i) => i !== index));
   };
 
@@ -128,18 +140,19 @@ export function Contact() {
                       const phone = (form.querySelector("#phone") as HTMLInputElement)?.value?.trim() ?? "";
                       const address = (form.querySelector("#address") as HTMLInputElement)?.value?.trim() ?? "";
                       const message = (form.querySelector("#message") as HTMLTextAreaElement)?.value?.trim() ?? "";
+                      const formData = new FormData();
+                      formData.set("name", name);
+                      formData.set("email", email);
+                      formData.set("message", message);
+                      if (phone) formData.set("phone", phone);
+                      if (address) formData.set("address", address);
+                      if (selectedRoom) formData.set("roomType", selectedRoom);
+                      for (const file of photosFilesRef.current) {
+                        formData.append("photos", file);
+                      }
                       const res = await fetch("/api/contact", {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                          name,
-                          email,
-                          phone: phone || undefined,
-                          address: address || undefined,
-                          roomType: selectedRoom || undefined,
-                          message,
-                          photoNames: photos.map((p) => p.name),
-                        }),
+                        body: formData,
                       });
                       const data = await res.json().catch(() => ({}));
                       if (!res.ok) {
@@ -151,6 +164,7 @@ export function Contact() {
                       form.reset();
                       setSelectedRoom("");
                       setPhotos([]);
+                      photosFilesRef.current = [];
                     } catch {
                       setStatus("error");
                       setErrorMessage("Възникна грешка. Моля, опитайте отново.");
