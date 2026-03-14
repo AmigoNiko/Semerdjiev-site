@@ -30,15 +30,6 @@ function buildEmailHtml(data: ContactPayload): string {
         `<tr><td style="padding:8px 12px;font-weight:600;color:#374151;vertical-align:top;width:160px;">${label}</td><td style="padding:8px 12px;color:#1f2937;">${escapeHtml(String(value))}</td></tr>`
     )
     .join("");
-
-  const photosSection =
-    data.photoNames && data.photoNames.length > 0
-      ? `
-    <tr><td colspan="2" style="padding:12px 0 4px;font-weight:600;color:#374151;">Прикачени снимки</td></tr>
-    <tr><td colspan="2" style="padding:4px 12px;color:#6b7280;font-size:14px;">${data.photoNames.map((n) => escapeHtml(n)).join(", ")}</td></tr>
-  `
-      : "";
-
   return `
 <!DOCTYPE html>
 <html>
@@ -52,7 +43,6 @@ function buildEmailHtml(data: ContactPayload): string {
     <div style="padding:24px;">
       <table style="width:100%;border-collapse:collapse;font-size:15px;">
         ${rows}
-        ${photosSection}
       </table>
       <div style="margin-top:20px;padding-top:16px;border-top:1px solid #e5e7eb;">
         <div style="font-weight:600;color:#374151;margin-bottom:8px;">Описание на проекта</div>
