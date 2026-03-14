@@ -57,7 +57,10 @@ const roomTypes = [
 export function Contact() {
   const [selectedRoom, setSelectedRoom] = useState<string>("");
   const [photos, setPhotos] = useState<{ name: string; size: string }[]>([]);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -111,9 +114,47 @@ export function Contact() {
             <Card className="border-forest/10 dark:border-cream/10">
               <CardContent className="p-6 sm:p-8">
                 <form
+                  ref={formRef}
                   className="space-y-6"
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
+                    const form = formRef.current;
+                    if (!form) return;
+                    setStatus("sending");
+                    setErrorMessage("");
+                    try {
+                      const name = (form.querySelector("#name") as HTMLInputElement)?.value?.trim() ?? "";
+                      const email = (form.querySelector("#email") as HTMLInputElement)?.value?.trim() ?? "";
+                      const phone = (form.querySelector("#phone") as HTMLInputElement)?.value?.trim() ?? "";
+                      const address = (form.querySelector("#address") as HTMLInputElement)?.value?.trim() ?? "";
+                      const message = (form.querySelector("#message") as HTMLTextAreaElement)?.value?.trim() ?? "";
+                      const res = await fetch("/api/contact", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          name,
+                          email,
+                          phone: phone || undefined,
+                          address: address || undefined,
+                          roomType: selectedRoom || undefined,
+                          message,
+                          photoNames: photos.map((p) => p.name),
+                        }),
+                      });
+                      const data = await res.json().catch(() => ({}));
+                      if (!res.ok) {
+                        setStatus("error");
+                        setErrorMessage(data?.error ?? "Неуспешно изпращане.");
+                        return;
+                      }
+                      setStatus("success");
+                      form.reset();
+                      setSelectedRoom("");
+                      setPhotos([]);
+                    } catch {
+                      setStatus("error");
+                      setErrorMessage("Възникна грешка. Моля, опитайте отново.");
+                    }
                   }}
                 >
                   <div>
@@ -262,12 +303,24 @@ export function Contact() {
                     )}
                   </div>
 
+                  {status === "success" && (
+                    <p className="flex items-center gap-2 text-green-600 dark:text-green-400 text-sm font-medium">
+                      <CheckCircle2 className="h-4 w-4 shrink-0" />
+                      Запитването е изпратено успешно. Ще се свържем с вас скоро.
+                    </p>
+                  )}
+                  {status === "error" && errorMessage && (
+                    <p className="text-red-600 dark:text-red-400 text-sm font-medium">
+                      {errorMessage}
+                    </p>
+                  )}
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full sm:w-auto bg-terra hover:bg-terra-light text-white font-semibold px-10 py-6 text-base tracking-wide"
+                    disabled={status === "sending"}
+                    className="w-full sm:w-auto bg-terra hover:bg-terra-light text-white font-semibold px-10 py-6 text-base tracking-wide disabled:opacity-70 disabled:pointer-events-none"
                   >
-                    Изпратете запитване
+                    {status === "sending" ? "Изпращане..." : "Изпратете запитване"}
                   </Button>
                 </form>
               </CardContent>
