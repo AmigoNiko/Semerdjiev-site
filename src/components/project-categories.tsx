@@ -10,7 +10,7 @@ const categories = getCategories();
 
 export function ProjectCategories() {
   return (
-    <section id="projects" className="py-20 sm:py-28 bg-cream dark:bg-forest-950">
+    <section id="projects" className="py-20 sm:py-28 bg-cream">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -29,12 +29,12 @@ export function ProjectCategories() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-terra to-brown bg-clip-text text-transparent">
             Нашите проекти
           </h2>
-          <p className="mt-4 text-forest-dark/60 dark:text-cream/60 max-w-2xl mx-auto text-base sm:text-lg">
+          <p className="mt-4 text-forest/60 max-w-2xl mx-auto text-base sm:text-lg">
             Разгледайте нашите проекти по категория — от кухни до спални, всяко пространство разказва история
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
           {categories.map((category, index) => (
             <motion.div
               key={category.slug}
@@ -47,14 +47,14 @@ export function ProjectCategories() {
                 href={`/projects/${category.slug}`}
                 className="group block h-full"
               >
-                <div className="relative h-full rounded-xl overflow-hidden border border-forest/10 dark:border-cream/10 hover:border-terra/30 transition-all duration-300 shadow-sm hover:shadow-lg">
+                <div className="relative h-full rounded-xl overflow-hidden border border-forest/10 hover:border-terra/30 transition-all duration-300 shadow-sm hover:shadow-lg">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={category.image}
                       alt={category.name}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/30 to-transparent" />
 

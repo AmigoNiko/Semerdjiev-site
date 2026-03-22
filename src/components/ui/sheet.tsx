@@ -39,7 +39,7 @@ const SheetContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed z-50 gap-4 bg-cream dark:bg-forest-950 p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
+        "fixed z-50 gap-4 bg-cream p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
         side === "top" &&
           "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
         side === "bottom" &&
@@ -55,7 +55,7 @@ const SheetContent = React.forwardRef<
       <DialogPrimitive.Title className="sr-only">Навигационно меню</DialogPrimitive.Title>
       <DialogPrimitive.Description className="sr-only">Навигационни връзки</DialogPrimitive.Description>
       {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-forest-950 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-terra focus:ring-offset-2">
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-cream transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-terra focus:ring-offset-2">
         <X className="h-5 w-5 text-terra" />
         <span className="sr-only">Затвори</span>
       </DialogPrimitive.Close>

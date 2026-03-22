@@ -1,9 +1,19 @@
+export type SpecRow = {
+  element: string;
+  material: string;
+  code: string;
+};
+
 export type Project = {
   title: string;
   category: string;
   slug: string;
   description: string;
   image: string;
+  images: string[];
+  longDescription: string;
+  location?: string;
+  specs: SpecRow[];
 };
 
 export type Category = {
@@ -16,162 +26,99 @@ export type Category = {
 
 export const projects: Project[] = [
   {
-    title: "Модерна минималистична кухня",
-    category: "Кухня",
-    slug: "moderna-minimalistichna-kuhnya",
+    title: 'Проект „Елегантност в сиво и дъб"',
+    category: "Кухня и дневна",
+    slug: "elegantnost-v-sivo-i-dab",
     description:
-      "Елегантен дизайн без дръжки с вградени уреди, кварцови плотове и скрити решения за съхранение за безупречна естетика.",
-    image:
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800&auto=format&fit=crop",
+      "Съвременен минимализъм, съчетан с усещане за уют. Контраст между топлината на дъбовия фурнир и индустриалното излъчване на тъмносивия мат.",
+    image: "/projects/elegantnost-v-sivo-i-dab/1.png",
+    images: [
+      "/projects/elegantnost-v-sivo-i-dab/1.png",
+      "/projects/elegantnost-v-sivo-i-dab/2.png",
+      "/projects/elegantnost-v-sivo-i-dab/3.png",
+      "/projects/elegantnost-v-sivo-i-dab/4.png",
+    ],
+    longDescription:
+      "Тази кухня е перфектното въплъщение на съвременния минимализъм, съчетан с усещане за уют. Проектът залага на изчистени линии и функционално зониране, като акцентът пада върху контраста между топлината на дъбовия фурнир и индустриалното излъчване на тъмносивия мат. Вградените уреди и скритите решения за съхранение създават безупречна визуална хармония, а кварцовите плотове добавят нотка на лукс.",
+    location: "София, България, Младост 4",
+    specs: [
+      { element: "Лице (Сиво)", material: "МДФ лак мат или висок клас ПДЧ мат", code: "Egger U732 PM (Dust Grey)" },
+      { element: "Лице (Дъб)", material: "Фурнирован МДФ или качествен ламинат", code: "Egger H3303 ST10 (Дъб Хамилтън)" },
+      { element: "Корпуси", material: "МДФ 18мм Бял мат", code: "Egger W1000 (Premium White)" },
+      { element: "Работен плот", material: "Технически камък или Кварцов плот", code: "Calacatta Gold ефект" },
+      { element: "Витрина", material: "Алуминиев профил с обемно стъкло", code: "Черен мат / Прозрачно стъкло" },
+    ],
   },
   {
-    title: "Съвременна тъмна кухня",
-    category: "Кухня",
-    slug: "savremenna-tamna-kuhnya",
+    title: 'Проект „Мраморен минимализъм и тюркоаз"',
+    category: "Кухня и дневна",
+    slug: "mramoren-minimalizam-i-tyurkoaz",
     description:
-      "Смели тъмни шкафове, съчетани с месингов обков и мраморен гръб, създаващи драматично, но изискано пространство за готвене.",
-    image:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800&auto=format&fit=crop",
+      "Съвременен градски стил, съчетан с усещане за простор и светлина. Луксозни мраморни повърхности, контрастиращи с модерни тюркоазени детайли и графични черни елементи.",
+    image: "/projects/mramoren-minimalizam-i-tyurkoaz/1.png",
+    images: [
+      "/projects/mramoren-minimalizam-i-tyurkoaz/1.png",
+      "/projects/mramoren-minimalizam-i-tyurkoaz/2.png",
+      "/projects/mramoren-minimalizam-i-tyurkoaz/3.png",
+      "/projects/mramoren-minimalizam-i-tyurkoaz/4.png",
+      "/projects/mramoren-minimalizam-i-tyurkoaz/5.png",
+      "/projects/mramoren-minimalizam-i-tyurkoaz/6.png",
+    ],
+    longDescription:
+      "Този интериор е перфектното въплъщение на съвременния градски стил, съчетан с усещане за простор и светлина. Проектът залага на изчистени линии и функционално зониране на отвореното пространство. Акцентът пада върху луксозното излъчване на мраморните повърхности, които контрастират с модерните тюркоазени детайли и графичните черни елементи. Интегрираната кухня и минималистичната ТВ секция създават безупречна визуална хармония, а естествената светлина подчертава дълбочината на използваните текстури.",
+    location: "София, България, Дружба",
+    specs: [
+      { element: "Лице (Кухня и Секция)", material: "МДФ лак мат или висок клас ПДЧ", code: "Egger W1000 PM (Premium White) / U732" },
+      { element: "Работен плот / Гръб", material: "Технически камък или Стенен панел", code: "Calacatta Marble ефект" },
+      { element: "ТВ Стена", material: "Декоративен панел с мраморен декор", code: 'Мрамор „Grey Light"' },
+      { element: "Трапезна маса", material: "Плот с мраморен ефект и метална основа", code: "Индивидуална изработка" },
+      { element: "Подова настилка", material: "Ламиниран паркет / Трислоен паркет", code: "Дъб (Класическа рибена кост)" },
+      { element: "Акценти / Декор", material: "Цветно стъкло и прахово боядисан метал", code: "Тюркоаз / Черен мат" },
+    ],
   },
   {
-    title: "Класическа кухня Шейкър",
-    category: "Кухня",
-    slug: "klasicheska-kuhnya-sheykar",
+    title: 'Проект „Графитен комфорт и дъб"',
+    category: "Спалня и детска стая",
+    slug: "grafiten-komfort-i-dab",
     description:
-      "Вечен дизайн в стил Шейкър с първокласни каменни плотове и месингови акценти. Перфектен баланс между традиция и модерна функционалност.",
-    image:
-      "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Реновация на фермерска кухня",
-    category: "Кухня",
-    slug: "renovatsiya-fermerska-kuhnya",
-    description:
-      "Топли дървени шкафове, мивка с престилка и открити рафтове. Гостоприемна фермерска кухня, която е едновременно рустикална и изтънчена.",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Уютна главна спалня",
-    category: "Спалня",
-    slug: "uyutna-glavna-spalnya",
-    description:
-      "Топли дървени тонове и меки текстили, създаващи спокойно спално убежище с вградени гардероби и амбиентно осветление.",
-    image:
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Минималистичен спален апартамент",
-    category: "Спалня",
-    slug: "minimalistichen-spalen-apartament",
-    description:
-      "Чисти линии, неутрална палитра и плаващо легло. Спокойно пространство, проектирано за пълна релаксация и спокоен сън.",
-    image:
-      "https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Луксозна гостна спалня",
-    category: "Спалня",
-    slug: "luksozna-gostna-spalnya",
-    description:
-      "Приветлива гостна стая с луксозно спално бельо, акцентна стена и удобства за хотелско преживяване у дома.",
-    image:
-      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Луксозен отворен план на дневна",
-    category: "Дневна",
-    slug: "luksozen-otvoren-plan-dnevna",
-    description:
-      "Просторно открито пространство, обединяващо кухня, трапезария и дневна зона с дизайнерски мебели и подбрано изкуство.",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Съвременна всекидневна",
-    category: "Дневна",
-    slug: "savremenna-vsekidnevna",
-    description:
-      "Модерна всекидневна със секционен диван, акцентно осветление и медийна стена, балансираща забавление с елегантен дизайн.",
-    image:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Уютен кът за четене",
-    category: "Дневна",
-    slug: "uyuten-kat-za-chetene",
-    description:
-      "Дневна, проектирана около комфорта — с вградени библиотеки, прозоречни седалки и пластове от топли текстили.",
-    image:
-      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "СПА-вдъхновена баня",
-    category: "Баня",
-    slug: "spa-vdahnovena-banya",
-    description:
-      "Естествен камък, дъждовен душ и топло амбиентно осветление, проектирани за ежедневна релаксация и възстановяване.",
-    image:
-      "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Модерна мраморна баня",
-    category: "Баня",
-    slug: "moderna-mramorna-banya",
-    description:
-      "Мрамор от пода до тавана, свободно стояща вана и черни матови смесители, създаващи луксозно и вечно банско пространство.",
-    image:
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Скандинавска трапезария",
-    category: "Трапезария",
-    slug: "skandinavska-trapezariya",
-    description:
-      "Чисти линии, светли дървесини и внимателно подбрано осветление за приветлива трапезария, обединяваща семейството.",
-    image:
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Официална трапезария",
-    category: "Трапезария",
-    slug: "ofitsialna-trapezariya",
-    description:
-      "Елегантна трапезария с ефектен полилей, тапицирани столове и богати стенни покрития за запомнящи се събирания.",
-    image:
-      "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Весела детска стая",
-    category: "Детска стая",
-    slug: "vesela-detska-staya",
-    description:
-      "Жизнено, но организирано пространство с вградено съхранение, игриви дизайнерски елементи и уютен кът за четене.",
-    image:
-      "https://images.unsplash.com/photo-1616627547584-bf28cee262db?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Тийнейджърска стая за учене",
-    category: "Детска стая",
-    slug: "tiyneydzharsk-staya-za-uchene",
-    description:
-      "Стилна тийнейджърска стая с интегрирана работна зона, достатъчно място за съхранение и дизайн, който расте с тях.",
-    image:
-      "https://images.unsplash.com/photo-1632210706560-4eccbee60251?q=80&w=800&auto=format&fit=crop",
+      "Модерен градски шик, където функционалността среща изтънчения дизайн. Смел контраст между дълбокото антрацитно сиво и топлината на естествения дъб.",
+    image: "/projects/grafiten-komfort-i-dab/1.png",
+    images: [
+      "/projects/grafiten-komfort-i-dab/1.png",
+      "/projects/grafiten-komfort-i-dab/2.png",
+      "/projects/grafiten-komfort-i-dab/3.png",
+      "/projects/grafiten-komfort-i-dab/4.png",
+    ],
+    longDescription:
+      "Тази спалня е олицетворение на модерния градски шик, където функционалността среща изтънчения дизайн. Проектът залага на смел контраст между дълбокото антрацитно сиво и топлината на естествения дъб. Пространството е умело зонирано, интегрирайки комфортна зона за сън, ергономичен работен кът под прозореца и обширна гардеробна система с открити елементи. Фрезованите стенни панели и деликатното вградено осветление добавят текстура и дълбочина, превръщайки стаята в уютно убежище с подчертан характер.",
+    location: "София, България, Малинова долина",
+    specs: [
+      { element: "Лице (Гардероби и бюра)", material: "МДФ лак мат или ПДЧ висок клас", code: "Anthracite Grey (U961) / Дъб Натурал" },
+      { element: "Стенна декорация (Гръб)", material: "Фрезован МДФ панел (вертикални линии)", code: "Индивидуално боядисан – Антрацит мат" },
+      { element: "ТВ Стена", material: "Стенен панел с декор бял мрамор", code: "Calacatta Borghini ефект" },
+      { element: "Осветление", material: "Модерна LED полилей-рингова система", code: "Черен мат / Топла светлина" },
+      { element: "Механизми / Профили", material: "Алуминиева рамка със стъкло", code: "Черен профил / Графитено стъкло" },
+      { element: "Подова настилка", material: "Ламиниран паркет", code: "Светъл дъб (Натурална текстура)" },
+    ],
   },
 ];
 
+const categorySlugs: Record<string, string> = {
+  "Кухня и дневна": "kuhnya-i-dnevna",
+  "Спалня и детска стая": "spalnya-i-detska-staya",
+};
+
+const categoryDescriptions: Record<string, string> = {
+  "Кухня и дневна": "Модерни кухни и уютни дневни пространства — от функционални решения до елегантен дизайн",
+  "Спалня и детска стая": "Спокойни спални и креативни детски стаи, проектирани за комфорт и стил",
+};
+
+export function getCategorySlug(name: string): string {
+  return categorySlugs[name] || name.toLowerCase().replace(/\s+/g, "-");
+}
+
 export function getCategories(): Category[] {
   const categoryMap = new Map<string, { count: number; image: string; description: string }>();
-
-  const descriptions: Record<string, string> = {
-    "Кухня": "Модерни и класически кухненски дизайни с първокласен монтаж и довършителни работи",
-    "Спалня": "Спокойни спални убежища, проектирани за комфорт, стил и пълноценна почивка",
-    "Дневна": "Елегантни дневни пространства, съчетаващи комфорт с изискан дизайн",
-    "Баня": "СПА-вдъхновени бани с луксозни материали и внимателно планирани решения",
-    "Трапезария": "Приветливи трапезарии, перфектни за семейни събирания и незабравими вечери",
-    "Детска стая": "Креативни и функционални пространства за игра, учене и израстване",
-  };
 
   for (const project of projects) {
     const existing = categoryMap.get(project.category);
@@ -181,14 +128,14 @@ export function getCategories(): Category[] {
       categoryMap.set(project.category, {
         count: 1,
         image: project.image,
-        description: descriptions[project.category] || "",
+        description: categoryDescriptions[project.category] || "",
       });
     }
   }
 
   return Array.from(categoryMap.entries()).map(([name, data]) => ({
     name,
-    slug: name.toLowerCase().replace(/\s+/g, "-"),
+    slug: getCategorySlug(name),
     description: data.description,
     image: data.image,
     count: data.count,
@@ -197,11 +144,22 @@ export function getCategories(): Category[] {
 
 export function getProjectsByCategory(slug: string): Project[] {
   return projects.filter(
-    (p) => p.category.toLowerCase().replace(/\s+/g, "-") === slug
+    (p) => getCategorySlug(p.category) === slug
   );
 }
 
 export function getCategoryName(slug: string): string | undefined {
   const cat = getCategories().find((c) => c.slug === slug);
   return cat?.name;
+}
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
+}
+
+export function getAllProjectSlugsWithCategory(): { category: string; slug: string }[] {
+  return projects.map((p) => ({
+    category: getCategorySlug(p.category),
+    slug: p.slug,
+  }));
 }

@@ -17,7 +17,7 @@ const buttonVariants = cva(
         secondary:
           "bg-forest text-cream shadow-sm hover:bg-forest-light",
         ghost:
-          "hover:bg-forest/10 dark:hover:bg-cream/10 hover:text-terra",
+          "hover:bg-forest/5 hover:text-terra",
         link: "text-terra underline-offset-4 hover:underline",
       },
       size: {

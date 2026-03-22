@@ -38,7 +38,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-20 sm:py-28 bg-warm-50 dark:bg-warm-900">
+    <section id="services" className="py-20 sm:py-28 bg-warm-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -57,7 +57,7 @@ export function Services() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">
             Our Services
           </h2>
-          <p className="mt-4 text-warm-900/70 dark:text-warm-200/70 max-w-2xl mx-auto text-base sm:text-lg">
+          <p className="mt-4 text-warm-900/70 max-w-2xl mx-auto text-base sm:text-lg">
             From initial concept to final installation, we provide end-to-end solutions
           </p>
         </motion.div>
@@ -77,12 +77,12 @@ export function Services() {
                   <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gold/10 text-gold group-hover:bg-gold/20 transition-colors">
                     <service.icon className="h-6 w-6" />
                   </div>
-                  <CardTitle className="text-warm-900 dark:text-warm-200 group-hover:text-gold transition-colors">
+                  <CardTitle className="text-warm-900 group-hover:text-gold transition-colors">
                     {service.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-warm-900/70 dark:text-warm-200/70 leading-relaxed">
+                  <p className="text-warm-900/70 leading-relaxed">
                     {service.description}
                   </p>
                 </CardContent>

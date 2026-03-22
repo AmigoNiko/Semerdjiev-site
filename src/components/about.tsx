@@ -13,7 +13,7 @@ const stats = [
 
 export function About() {
   return (
-    <section id="about" className="py-20 sm:py-28 bg-cream dark:bg-forest-950">
+    <section id="about" className="py-20 sm:py-28 bg-cream">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
@@ -54,7 +54,7 @@ export function About() {
 
             <Separator className="mb-6 w-24 bg-terra/30" />
 
-            <div className="space-y-4 text-forest-dark/70 dark:text-cream/70 leading-relaxed">
+            <div className="space-y-4 text-forest-dark/70 leading-relaxed">
               <p>
                 С над 15 години опит в интериорния дизайн и монтажа на кухни,
                 ние съчетаваме креативност и техническа експертиза във всеки проект.
@@ -80,7 +80,7 @@ export function About() {
                   <div className="font-serif text-2xl sm:text-3xl font-bold bg-gradient-to-r from-terra to-brown bg-clip-text text-transparent">
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-forest-dark/50 dark:text-cream/50 mt-1">
+                  <div className="text-xs sm:text-sm text-forest-dark/50 mt-1">
                     {stat.label}
                   </div>
                 </div>

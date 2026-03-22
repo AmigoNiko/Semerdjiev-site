@@ -14,18 +14,18 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="bg-forest-dark dark:bg-forest-950 border-t border-terra/10">
+    <footer className="bg-forest-dark border-t border-terra/10">
       <div className="h-[1px] bg-gradient-to-r from-transparent via-terra/40 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           <div>
-            <span className="font-serif text-2xl font-bold bg-gradient-to-r from-terra to-brown-light bg-clip-text text-transparent">
+            <span className="font-serif text-2xl font-bold bg-gradient-to-r  bg-gray-50 bg-clip-text text-transparent">
               Semerdzhiev Designs
             </span>
             <p className="mt-3 text-cream/50 text-sm leading-relaxed max-w-xs">
-              Превръщаме пространствата в изключителни преживявания.
-              Първокласен интериорен дизайн и монтаж на кухни.
+              Превръщаме пространствата в изключителни преживявания. Първокласен
+              интериорен дизайн и монтаж на кухни.
             </p>
           </div>
 
@@ -67,7 +67,8 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-cream/10">
           <p className="text-center text-cream/30 text-sm">
-            &copy; {new Date().getFullYear()} Semerdzhiev Designs. Всички права запазени.
+            &copy; {new Date().getFullYear()} Semerdzhiev Designs. Всички права
+            запазени.
           </p>
         </div>
       </div>

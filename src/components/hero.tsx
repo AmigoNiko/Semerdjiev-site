@@ -21,9 +21,8 @@ export function Hero() {
         placeholder="blur"
       />
 
-      <div className="absolute inset-0 bg-[rgba(20,15,10,0.60)]" />
-      <div className="absolute inset-0 bg-[rgba(30,20,10,0.52)]" />
-      <div className="absolute inset-0 bg-[rgba(15,10,5,0.62)]" />
+      <div className="absolute inset-0 bg-[rgba(20,15,10,0.50)]" />
+      <div className="absolute inset-0 bg-[rgba(30,20,10,0.35)]" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
         <motion.div

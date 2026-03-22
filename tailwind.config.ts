@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class",
   content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,20 +11,20 @@ const config: Config = {
     extend: {
       colors: {
         forest: {
-          DEFAULT: "#2E4A3D",
-          light: "#3D6350",
-          dark: "#1A2E25",
-          950: "#0F1D17",
+          DEFAULT: "#3D6350",
+          light: "#5A8A70",
+          dark: "#2E4A3D",
+          950: "#1A2E25",
         },
         cream: {
-          DEFAULT: "#F6F1E8",
-          light: "#FBF9F5",
-          dark: "#EDE5D8",
+          DEFAULT: "#FAFAF7",
+          light: "#FFFFFF",
+          dark: "#F0EDE6",
         },
         brown: {
-          DEFAULT: "#865D3B",
-          light: "#A07350",
-          dark: "#6B4A2F",
+          DEFAULT: "#9A7356",
+          light: "#B08A6E",
+          dark: "#7A5C42",
         },
         terra: {
           DEFAULT: "#C65D3B",

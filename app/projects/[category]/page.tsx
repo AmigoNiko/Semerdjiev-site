@@ -41,7 +41,7 @@ export default async function CategoryPage({
     <>
       <Header />
       <main className="pt-16">
-        <ProjectGrid categoryName={categoryName} projects={projects} />
+        <ProjectGrid categoryName={categoryName} categorySlug={category} projects={projects} />
       </main>
       <Footer />
     </>

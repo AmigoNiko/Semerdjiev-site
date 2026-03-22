@@ -11,7 +11,6 @@ export type ContactPayload = {
   name: string;
   email: string;
   phone?: string;
-  address?: string;
   roomType?: string;
   message: string;
   photoNames?: string[];
@@ -22,7 +21,6 @@ function buildEmailHtml(data: ContactPayload): string {
     ["Име и фамилия", data.name],
     ["Имейл", data.email],
     ["Телефон", data.phone || "—"],
-    ["Адрес на имота", data.address || "—"],
     ["Тип помещение", data.roomType || "—"],
   ]
     .map(
@@ -76,7 +74,6 @@ export async function POST(request: Request) {
     let email: string;
     let message: string;
     let phone: string | undefined;
-    let address: string | undefined;
     let roomType: string | undefined;
     let photoNames: string[] = [];
     let attachments: { filename: string; content: Buffer }[] = [];
@@ -88,8 +85,6 @@ export async function POST(request: Request) {
       message = (formData.get("message") as string | null)?.trim() ?? "";
       const phoneVal = formData.get("phone") as string | null;
       phone = phoneVal?.trim() || undefined;
-      const addressVal = formData.get("address") as string | null;
-      address = addressVal?.trim() || undefined;
       const roomVal = formData.get("roomType") as string | null;
       roomType = roomVal?.trim() || undefined;
       const files = formData.getAll("photos") as Blob[];
@@ -107,7 +102,6 @@ export async function POST(request: Request) {
       email = typeof body?.email === "string" ? body.email.trim() : "";
       message = typeof body?.message === "string" ? body.message.trim() : "";
       phone = typeof body?.phone === "string" ? body.phone.trim() || undefined : undefined;
-      address = typeof body?.address === "string" ? body.address.trim() || undefined : undefined;
       roomType = typeof body?.roomType === "string" ? body.roomType.trim() || undefined : undefined;
       photoNames = Array.isArray(body?.photoNames) ? body.photoNames : [];
     }
@@ -134,7 +128,6 @@ export async function POST(request: Request) {
       name,
       email,
       phone,
-      address,
       roomType,
       message,
       photoNames: photoNames.length > 0 ? photoNames : undefined,
