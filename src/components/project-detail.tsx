@@ -115,8 +115,8 @@ export function ProjectDetail({ project, categorySlug }: ProjectDetailProps) {
             </h1>
 
             {project.location && (
-              <div className="flex items-center gap-2 text-forest/60 mt-2">
-                <MapPin className="h-4 w-4 text-terra shrink-0" />
+              <div className="flex items-center gap-2 text-forest/70 mt-2">
+                <MapPin className="h-4 w-4 text-gold-dark shrink-0" />
                 <span className="text-sm font-medium">{project.location}</span>
               </div>
             )}
@@ -166,7 +166,7 @@ export function ProjectDetail({ project, categorySlug }: ProjectDetailProps) {
                         <td className="px-5 py-3.5 text-forest/70">
                           {spec.material}
                         </td>
-                        <td className="px-5 py-3.5 text-forest/60 font-mono text-xs">
+                        <td className="px-5 py-3.5 text-forest/70 font-mono text-xs">
                           {spec.code}
                         </td>
                       </tr>
@@ -182,7 +182,7 @@ export function ProjectDetail({ project, categorySlug }: ProjectDetailProps) {
                     className="rounded-lg border border-forest/10 bg-white p-4 space-y-2"
                   >
                     <div>
-                      <span className="text-xs uppercase tracking-wider text-terra/70 font-semibold">
+                      <span className="text-xs uppercase tracking-wider text-gold-dark font-semibold">
                         Елемент
                       </span>
                       <div className="font-medium text-forest-dark text-sm mt-0.5">
@@ -190,7 +190,7 @@ export function ProjectDetail({ project, categorySlug }: ProjectDetailProps) {
                       </div>
                     </div>
                     <div>
-                      <span className="text-xs uppercase tracking-wider text-terra/70 font-semibold">
+                      <span className="text-xs uppercase tracking-wider text-gold-dark font-semibold">
                         Материал
                       </span>
                       <div className="text-forest/70 text-sm mt-0.5">
@@ -198,10 +198,10 @@ export function ProjectDetail({ project, categorySlug }: ProjectDetailProps) {
                       </div>
                     </div>
                     <div>
-                      <span className="text-xs uppercase tracking-wider text-terra/70 font-semibold">
+                      <span className="text-xs uppercase tracking-wider text-gold-dark font-semibold">
                         Код / Референция
                       </span>
-                      <div className="text-forest/50 text-xs mt-0.5 font-mono">
+                      <div className="text-forest/65 text-xs mt-0.5 font-mono">
                         {spec.code}
                       </div>
                     </div>

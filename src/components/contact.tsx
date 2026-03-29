@@ -96,16 +96,16 @@ export function Contact() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-terra" />
-            <span className="text-terra text-sm tracking-[0.3em] uppercase font-sans">
+            <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-gold" />
+            <span className="text-gold-dark text-sm tracking-[0.3em] uppercase font-sans">
               Свържете се с нас
             </span>
-            <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-terra" />
+            <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-gold" />
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-terra to-brown bg-clip-text text-transparent">
             Започнете вашия проект
           </h2>
-          <p className="mt-4 text-forest/60 max-w-2xl mx-auto text-base sm:text-lg">
+          <p className="mt-4 text-forest/70 max-w-2xl mx-auto text-base sm:text-lg">
             Разкажете ни за вашата визия. Споделете снимки на текущото
             пространство и ние ще ви помогнем да го превърнете в нещо
             изключително.
@@ -268,7 +268,7 @@ export function Contact() {
                     <h3 className="font-serif text-lg font-semibold text-forest-dark mb-2">
                       Снимки на пространството
                     </h3>
-                    <p className="text-sm text-forest/50 mb-4">
+                    <p className="text-sm text-forest/65 mb-4">
                       Качете снимки на текущото пространство, за да можем
                       по-добре да разберем разположението и да предоставим точна
                       оценка.
@@ -371,11 +371,11 @@ export function Contact() {
               <div className="space-y-6">
                 {contactInfo.map((item) => (
                   <div key={item.label} className="flex gap-4">
-                    <div className="shrink-0 h-12 w-12 rounded-lg bg-terra/10 flex items-center justify-center">
-                      <item.icon className="h-5 w-5 text-terra" />
+                    <div className="shrink-0 h-12 w-12 rounded-lg bg-gold/10 flex items-center justify-center">
+                      <item.icon className="h-5 w-5 text-gold-dark" />
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-terra mb-1">
+                      <div className="text-sm font-medium text-gold-dark mb-1">
                         {item.label}
                       </div>
                       {item.href ? (
@@ -422,7 +422,7 @@ export function Contact() {
                   },
                 ].map((item) => (
                   <div key={item.step} className="flex gap-3 items-start">
-                    <span className="shrink-0 h-7 w-7 rounded-full bg-terra text-white text-xs font-bold flex items-center justify-center mt-0.5">
+                    <span className="shrink-0 h-7 w-7 rounded-full bg-gold text-white text-xs font-bold flex items-center justify-center mt-0.5">
                       {item.step}
                     </span>
                     <p className="text-sm text-forest/70 leading-relaxed">

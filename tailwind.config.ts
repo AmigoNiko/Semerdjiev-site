@@ -17,9 +17,9 @@ const config: Config = {
           950: "#1A2E25",
         },
         cream: {
-          DEFAULT: "#FAFAF7",
-          light: "#FFFFFF",
-          dark: "#F0EDE6",
+          DEFAULT: "#F7F5F0",
+          light: "#FDFCFA",
+          dark: "#EDE9E0",
         },
         brown: {
           DEFAULT: "#9A7356",
@@ -30,6 +30,11 @@ const config: Config = {
           DEFAULT: "#C65D3B",
           light: "#D87A5C",
           dark: "#A84D31",
+        },
+        gold: {
+          DEFAULT: "#B8976A",
+          light: "#CEAD82",
+          dark: "#9A7D52",
         },
       },
       fontFamily: {

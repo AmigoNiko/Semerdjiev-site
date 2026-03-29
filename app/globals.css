@@ -26,7 +26,7 @@
   }
 }
 
-/* Smooth dark mode transition */
+/* Smooth transitions */
 * {
   transition-property: background-color, border-color;
   transition-duration: 200ms;

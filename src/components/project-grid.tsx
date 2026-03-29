@@ -31,7 +31,7 @@ export function ProjectGrid({
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl md:leading-tight font-bold bg-gradient-to-r from-terra to-brown bg-clip-text text-transparent">
             Проекти — {categoryName}
           </h1>
-          <p className="mt-4 text-forest/60 text-base sm:text-lg max-w-2xl">
+          <p className="mt-4 text-forest/70 text-base sm:text-lg max-w-2xl">
             Разгледайте нашето портфолио за {categoryName.toLowerCase()} —{" "}
             {projects.length} {projects.length === 1 ? "проект" : "проекта"},
             демонстриращи нашето майсторство и внимание към детайла.
@@ -67,7 +67,7 @@ export function ProjectGrid({
                     </div>
                   </div>
                   <CardContent className="p-5">
-                    <p className="text-sm text-forest-dark/60 leading-relaxed mb-3">
+                    <p className="text-sm text-forest-dark/70 leading-relaxed mb-3">
                       {project.description}
                     </p>
                     <span className="inline-flex items-center gap-1.5 text-terra text-sm font-medium group-hover:gap-3 transition-all">

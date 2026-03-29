@@ -1,28 +1,57 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
 import heroBg from "@/assets/images/hero-bg.png";
 
+const heroImages = [
+  { src: heroBg, alt: "Интериорен дизайн на кухня", blur: true },
+  { src: "/projects/grafiten-komfort-i-dab/2.png", alt: "Спалня с графитен дизайн", blur: false },
+  { src: "/projects/mramoren-minimalizam-i-tyurkoaz/5.png", alt: "Кухня с мраморни акценти", blur: false },
+];
+
+const INTERVAL = 6000;
+
 export function Hero() {
+  const [current, setCurrent] = useState(0);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % heroImages.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(next, INTERVAL);
+    return () => clearInterval(timer);
+  }, [next]);
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <Image
-        src={heroBg}
-        alt="Интериорен дизайн на кухня"
-        fill
-        className="object-cover"
-        priority
-        placeholder="blur"
-      />
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={current}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={heroImages[current].src}
+            alt={heroImages[current].alt}
+            fill
+            className="object-cover"
+            priority={current === 0}
+            {...(heroImages[current].blur ? { placeholder: "blur" } : {})}
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      <div className="absolute inset-0 bg-[rgba(20,15,10,0.50)]" />
-      <div className="absolute inset-0 bg-[rgba(30,20,10,0.35)]" />
+      <div className="absolute inset-0 bg-[rgba(20,20,25,0.52)]" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
@@ -30,22 +59,20 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
-            <span className="bg-gradient-to-r from-terra to-brown bg-clip-text text-transparent">
-              Интериорен дизайн и
-            </span>
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 text-cream drop-shadow-lg">
+            Интериорен дизайн и
             <br />
-            <span className="bg-gradient-to-r from-brown-light to-terra bg-clip-text text-transparent">
+            <span className="text-gold-light">
               проектиране на мебели
             </span>
           </h1>
 
           <div className="max-w-2xl mx-auto mb-10 space-y-4">
-            <p className="text-cream/70 text-base sm:text-lg md:text-xl font-sans leading-relaxed italic">
+            <p className="text-cream/85 text-base sm:text-lg md:text-xl font-sans leading-relaxed italic drop-shadow-sm">
               Създавам функционални и модерни интериори решения, съобразени с
               вашето пространство, стил и бюджет.
             </p>
-            <p className="text-cream/80 text-base sm:text-lg md:text-xl font-sans leading-relaxed font-semibold">
+            <p className="text-cream/90 text-base sm:text-lg md:text-xl font-sans leading-relaxed font-semibold drop-shadow-sm">
               От идея до реализация – всичко започва с добър проект.
             </p>
           </div>
@@ -54,7 +81,7 @@ export function Hero() {
             <Button
               variant="outline"
               size="lg"
-              className="border-terra text-terra hover:bg-terra hover:text-white text-base px-8 py-6 tracking-wide"
+              className="border-cream/80 text-cream hover:bg-terra hover:text-white hover:border-terra text-base px-8 py-6 tracking-wide"
               asChild
             >
               <a href="#projects">Вижте нашите проекти</a>
@@ -62,7 +89,7 @@ export function Hero() {
             <Button
               variant="ghost"
               size="lg"
-              className="text-cream/80 hover:text-terra text-base px-8 py-6"
+              className="text-cream/80 hover:text-cream text-base px-8 py-6"
               asChild
             >
               <a href="#contact">Свържете се с нас</a>

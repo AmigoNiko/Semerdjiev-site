@@ -33,7 +33,7 @@ export function About() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest-950/40 via-transparent to-transparent" />
             </div>
-            <div className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-2 border-terra/20 -z-10" />
+            <div className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-2 border-gold/25 -z-10" />
           </motion.div>
 
           <motion.div
@@ -43,8 +43,8 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-terra" />
-              <span className="text-terra text-sm tracking-[0.3em] uppercase font-sans">
+              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-gold" />
+              <span className="text-gold-dark text-sm tracking-[0.3em] uppercase font-sans">
                 За нас
               </span>
             </div>
@@ -52,7 +52,7 @@ export function About() {
               Създаваме пространства, които вдъхновяват
             </h2>
 
-            <Separator className="mb-6 w-24 bg-terra/30" />
+            <Separator className="mb-6 w-24 bg-gold/40" />
 
             <div className="space-y-4 text-forest-dark/70 leading-relaxed">
               <p>
@@ -74,13 +74,13 @@ export function About() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 pt-10 border-t border-terra/10">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 pt-10 border-t border-gold/15">
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="font-serif text-2xl sm:text-3xl font-bold bg-gradient-to-r from-terra to-brown bg-clip-text text-transparent">
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-forest-dark/50 mt-1">
+                  <div className="text-xs sm:text-sm text-forest-dark/65 mt-1">
                     {stat.label}
                   </div>
                 </div>

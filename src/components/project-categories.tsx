@@ -20,16 +20,16 @@ export function ProjectCategories() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-terra" />
-            <span className="text-terra text-sm tracking-[0.3em] uppercase font-sans">
+            <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-gold" />
+            <span className="text-gold-dark text-sm tracking-[0.3em] uppercase font-sans">
               Портфолио
             </span>
-            <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-terra" />
+            <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-gold" />
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-terra to-brown bg-clip-text text-transparent">
             Нашите проекти
           </h2>
-          <p className="mt-4 text-forest/60 max-w-2xl mx-auto text-base sm:text-lg">
+          <p className="mt-4 text-forest/70 max-w-2xl mx-auto text-base sm:text-lg">
             Разгледайте нашите проекти по категория — от кухни до спални, всяко пространство разказва история
           </p>
         </motion.div>
